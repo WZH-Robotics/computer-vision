@@ -113,8 +113,5 @@ python train.py --img 704 --batch 16 --epochs 50 --data data.yaml --weights yolo
 
 ## Tech Stack
 
-- **1-6**: C++ / Qt 6.5
+- **1-6**: C++ / Qt 6.5 / KFC Image Processing Library
 - **7**: Python / YOLOv5 / Google Colab
-
-> **Note**: Framework code (UI scaffolding, image I/O) has been removed due to licensing.
-> Only core algorithm logic (`mainframe.cpp/h`) is included — projects are **not directly buildable**.
