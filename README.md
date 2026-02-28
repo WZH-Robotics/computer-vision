@@ -8,25 +8,39 @@ Image processing algorithms implemented in C++ with Qt framework, plus a YOLOv5-
 
 ```
 computer-vision/
-├── 1-contrast-transform/            # Image Contrast Enhancement
-├── 2-morphology-labeling/           # Morphological Ops & Component Labeling
-├── 3-opening-closing/               # Opening & Closing Operations
-├── 4-histogram-equalization/        # Histogram Equalization & Matching
-├── 5-hough-transform/               # Hough Transform for Circle Detection
-└── 6-yolov5-potato-detection/       # YOLOv5 Potato Anomaly Detection (Term Project)
+├── 1-color-space/                   # RGB / HSI / NRG Color Space Conversion
+├── 2-contrast-transform/            # Image Contrast Enhancement
+├── 3-morphology-labeling/           # Morphological Ops & Component Labeling
+├── 4-opening-closing/               # Opening & Closing Operations
+├── 5-histogram-equalization/        # Histogram Equalization & Matching
+├── 6-hough-transform/               # Hough Transform for Circle Detection
+└── 7-yolov5-potato-detection/       # YOLOv5 Potato Anomaly Detection (Term Project)
 ```
 
 ---
 
-## 1. Contrast Transform
+## 1. Color Space Conversion
 
-Basic image contrast enhancement using intensity transformation functions.
+RGB to HSI / NRG color space conversion and visualization.
 
-![Contrast Transform](1-contrast-transform/docs/result.png)
+- **RGB -> HSI**: Hue, Saturation, Intensity decomposition
+- **RGB -> NRG**: Normalized R, G channel separation
+
+| HSI (H / S / I) | NRG (NR / NG) |
+|:---:|:---:|
+| ![HSI](1-color-space/docs/hsi.png) | ![NRG](1-color-space/docs/nrg.png) |
 
 ---
 
-## 2. Morphology & Labeling
+## 2. Contrast Transform
+
+Basic image contrast enhancement using intensity transformation functions.
+
+![Contrast Transform](2-contrast-transform/docs/result.png)
+
+---
+
+## 3. Morphology & Labeling
 
 Morphological image processing with dilation, erosion, boundary detection, and connected component labeling.
 
@@ -34,22 +48,22 @@ Morphological image processing with dilation, erosion, boundary detection, and c
 - **Component Labeling**: N4 and N8 connectivity
 - **Boundary Detection**: Contour extraction
 
-![Morphology](2-morphology-labeling/docs/result.png)
+![Morphology](3-morphology-labeling/docs/result.png)
 
 ---
 
-## 3. Opening & Closing
+## 4. Opening & Closing
 
 Composite morphological operations for noise removal and shape refinement.
 
 - **Opening** (erosion -> dilation): Removes small objects
 - **Closing** (dilation -> erosion): Fills small holes
 
-![Opening & Closing](3-opening-closing/docs/result.png)
+![Opening & Closing](4-opening-closing/docs/result.png)
 
 ---
 
-## 4. Histogram Equalization
+## 5. Histogram Equalization
 
 Histogram equalization for contrast improvement and histogram matching between image pairs.
 
@@ -59,11 +73,11 @@ Histogram equalization for contrast improvement and histogram matching between i
 
 | Equalization | Matching |
 |:---:|:---:|
-| ![Equalization](4-histogram-equalization/docs/equalization.png) | ![Matching](4-histogram-equalization/docs/matching.png) |
+| ![Equalization](5-histogram-equalization/docs/equalization.png) | ![Matching](5-histogram-equalization/docs/matching.png) |
 
 ---
 
-## 5. Hough Transform
+## 6. Hough Transform
 
 Circle detection using Hough Transform for Korean coin recognition.
 
@@ -71,11 +85,11 @@ Circle detection using Hough Transform for Korean coin recognition.
 - **Generalized Hough**: Shape matching with model template
 - **Preprocessing**: Canny edge detection + gradient computation
 
-![Hough Transform](5-hough-transform/docs/result.png)
+![Hough Transform](6-hough-transform/docs/result.png)
 
 ---
 
-## 6. YOLOv5 Potato Anomaly Detection (Term Project)
+## 7. YOLOv5 Potato Anomaly Detection (Term Project)
 
 Automated food safety screening system that detects sprouted and rotten potatoes using YOLOv5.
 
@@ -86,7 +100,7 @@ Automated food safety screening system that detects sprouted and rotten potatoes
 
 | Normal | Sprout | Rotten |
 |:---:|:---:|:---:|
-| ![Normal](6-yolov5-potato-detection/docs/normal.png) | ![Sprout](6-yolov5-potato-detection/docs/sprout.jpg) | ![Rotten](6-yolov5-potato-detection/docs/rotten.png) |
+| ![Normal](7-yolov5-potato-detection/docs/normal.png) | ![Sprout](7-yolov5-potato-detection/docs/sprout.jpg) | ![Rotten](7-yolov5-potato-detection/docs/rotten.png) |
 
 ```bash
 # Training (Google Colab)
@@ -99,5 +113,5 @@ python train.py --img 704 --batch 16 --epochs 50 --data data.yaml --weights yolo
 
 ## Tech Stack
 
-- **1-5**: C++ / Qt 6.5 / KFC Image Processing Library
-- **6**: Python / YOLOv5 / Google Colab
+- **1-6**: C++ / Qt 6.5 / KFC Image Processing Library
+- **7**: Python / YOLOv5 / Google Colab
