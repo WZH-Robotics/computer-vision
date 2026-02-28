@@ -45,6 +45,8 @@ Composite morphological operations for noise removal and shape refinement.
 - **Opening** (erosion -> dilation): Removes small objects
 - **Closing** (dilation -> erosion): Fills small holes
 
+![Opening & Closing](3-opening-closing/docs/result.png)
+
 ---
 
 ## 4. Histogram Equalization
@@ -55,6 +57,10 @@ Histogram equalization for contrast improvement and histogram matching between i
 - **Matching**: Transforms source histogram to match target histogram
 - Implemented from scratch (no library functions)
 
+| Equalization | Matching |
+|:---:|:---:|
+| ![Equalization](4-histogram-equalization/docs/equalization.png) | ![Matching](4-histogram-equalization/docs/matching.png) |
+
 ---
 
 ## 5. Hough Transform
@@ -64,6 +70,8 @@ Circle detection using Hough Transform for Korean coin recognition.
 - **Standard Hough**: Detects circular coins (100w, 50w, 10w)
 - **Generalized Hough**: Shape matching with model template
 - **Preprocessing**: Canny edge detection + gradient computation
+
+![Hough Transform](5-hough-transform/docs/result.png)
 
 ---
 
