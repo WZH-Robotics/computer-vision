@@ -1,0 +1,14 @@
+# Build artifacts
+Makefile*
+debug/
+release/
+*.o
+*.qmake.stash
+*.pro.user*
+build-*/
+.qtc_clangd/
+
+# Python
+__pycache__/
+*.pyc
+runs/

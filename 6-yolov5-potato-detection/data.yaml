@@ -1,0 +1,8 @@
+# YOLOv5 Potato Anomaly Detection - Dataset Configuration
+# Update paths to match your dataset location
+
+train: /content/drive/MyDrive/yolov5/dataset/train_jpg.txt
+val: /content/drive/MyDrive/yolov5/dataset/val_jpg.txt
+
+nc: 3
+names: ['normal', 'sprout', 'rotten']
