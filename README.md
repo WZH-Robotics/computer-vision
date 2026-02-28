@@ -99,5 +99,5 @@ python train.py --img 704 --batch 16 --epochs 50 --data data.yaml --weights yolo
 
 ## Tech Stack
 
-- **HW 1-5**: C++ / Qt 6.5 / KFC Image Processing Library
-- **Term Project**: Python / YOLOv5 / Google Colab
+- **1-5**: C++ / Qt 6.5 / KFC Image Processing Library
+- **6**: Python / YOLOv5 / Google Colab
