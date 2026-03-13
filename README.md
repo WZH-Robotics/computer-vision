@@ -1,30 +1,17 @@
 # Computer Vision
 
-> Course assignments for **Computer Vision** (2023-2, Kwangwoon University)
+컴퓨터비전 수업에서 진행한 영상처리 프로젝트 모음.
+C++/Qt 기반 영상처리 알고리즘 6개와 YOLOv5 감자 이상 탐지 텀프로젝트로 구성된다.
 
-Image processing algorithms implemented in C++ with Qt framework, plus a YOLOv5-based potato anomaly detection term project.
+`C++` `Qt 6` `Python` `YOLOv5`
 
-## Repository Structure
-
-```
-computer-vision/
-├── 1-color-space/                   # RGB / HSI / NRG Color Space Conversion
-├── 2-contrast-transform/            # Image Contrast Enhancement
-├── 3-morphology-labeling/           # Morphological Ops & Component Labeling
-├── 4-opening-closing/               # Opening & Closing Operations
-├── 5-histogram-equalization/        # Histogram Equalization & Matching
-├── 6-hough-transform/               # Hough Transform for Circle Detection
-└── 7-yolov5-potato-detection/       # YOLOv5 Potato Anomaly Detection (Term Project)
-```
+> Framework code (UI, image I/O 등)는 라이선스 문제로 제외하였으며, 핵심 알고리즘 구현부(`algorithms.cpp`, `mainframe.cpp`)만 포함한다. 따라서 1~6번 프로젝트는 단독 빌드가 불가능하다.
 
 ---
 
 ## 1. Color Space Conversion
 
-RGB to HSI / NRG color space conversion and visualization.
-
-- **RGB -> HSI**: Hue, Saturation, Intensity decomposition
-- **RGB -> NRG**: Normalized R, G channel separation
+RGB → HSI, RGB → NRG 색 공간 변환 및 시각화.
 
 | HSI (H / S / I) | NRG (NR / NG) |
 |:---:|:---:|
@@ -34,7 +21,7 @@ RGB to HSI / NRG color space conversion and visualization.
 
 ## 2. Contrast Transform
 
-Basic image contrast enhancement using intensity transformation functions.
+명암 변환 함수를 이용한 이미지 대비 향상.
 
 ![Contrast Transform](2-contrast-transform/docs/result.png)
 
@@ -42,11 +29,7 @@ Basic image contrast enhancement using intensity transformation functions.
 
 ## 3. Morphology & Labeling
 
-Morphological image processing with dilation, erosion, boundary detection, and connected component labeling.
-
-- **Dilation / Erosion**: 3x3 and 5x5 structuring elements
-- **Component Labeling**: N4 and N8 connectivity
-- **Boundary Detection**: Contour extraction
+팽창/침식(3x3, 5x5), 경계 검출, N4/N8 연결 요소 라벨링을 구현하였다.
 
 ![Morphology](3-morphology-labeling/docs/result.png)
 
@@ -54,10 +37,7 @@ Morphological image processing with dilation, erosion, boundary detection, and c
 
 ## 4. Opening & Closing
 
-Composite morphological operations for noise removal and shape refinement.
-
-- **Opening** (erosion -> dilation): Removes small objects
-- **Closing** (dilation -> erosion): Fills small holes
+Opening(침식→팽창)과 Closing(팽창→침식)을 이용한 노이즈 제거 및 형태 보정.
 
 ![Opening & Closing](4-opening-closing/docs/result.png)
 
@@ -65,11 +45,7 @@ Composite morphological operations for noise removal and shape refinement.
 
 ## 5. Histogram Equalization
 
-Histogram equalization for contrast improvement and histogram matching between image pairs.
-
-- **Equalization**: Redistributes pixel intensity for better contrast
-- **Matching**: Transforms source histogram to match target histogram
-- Implemented from scratch (no library functions)
+히스토그램 평활화와 히스토그램 매칭을 라이브러리 함수 없이 직접 구현하였다.
 
 | Equalization | Matching |
 |:---:|:---:|
@@ -79,11 +55,8 @@ Histogram equalization for contrast improvement and histogram matching between i
 
 ## 6. Hough Transform
 
-Circle detection using Hough Transform for Korean coin recognition.
-
-- **Standard Hough**: Detects circular coins (100w, 50w, 10w)
-- **Generalized Hough**: Shape matching with model template
-- **Preprocessing**: Canny edge detection + gradient computation
+Hough Transform을 이용한 원 검출. 한국 동전(100원, 50원, 10원) 인식에 적용하였다.
+Canny edge detection과 gradient 계산 후 Standard Hough 및 Generalized Hough를 적용한다.
 
 ![Hough Transform](6-hough-transform/docs/result.png)
 
@@ -91,23 +64,20 @@ Circle detection using Hough Transform for Korean coin recognition.
 
 ## 7. YOLOv5 Potato Anomaly Detection (Term Project)
 
-Automated food safety screening system that detects sprouted and rotten potatoes using YOLOv5.
+YOLOv5를 이용한 감자 이상 탐지 시스템. AI-hub 농산물 품질검사 이미지로 학습하여, 정상/싹/부패 감자를 분류한다.
 
-- **Dataset**: AI-hub Agricultural Product QC images
-- **Classes**: Normal, Sprout, Rotten
-- **Model**: YOLOv5x, 50 epochs on Google Colab
-- **Accuracy**: 97% (sprout), 95% (rotten)
+- YOLOv5x, 50 epochs, Google Colab
+- 싹 감자 97%, 부패 감자 95% 정확도
 
 | Normal | Sprout | Rotten |
 |:---:|:---:|:---:|
 | ![Normal](7-yolov5-potato-detection/docs/normal.png) | ![Sprout](7-yolov5-potato-detection/docs/sprout.jpg) | ![Rotten](7-yolov5-potato-detection/docs/rotten.png) |
 
 ```bash
-# Training (Google Colab)
 python train.py --img 704 --batch 16 --epochs 50 --data data.yaml --weights yolov5x.pt
 ```
 
-> Based on [ultralytics/yolov5](https://github.com/ultralytics/yolov5)
+> [ultralytics/yolov5](https://github.com/ultralytics/yolov5) 기반
 
 ---
 
@@ -116,5 +86,15 @@ python train.py --img 704 --batch 16 --epochs 50 --data data.yaml --weights yolo
 - **1-6**: C++ / Qt 6.5
 - **7**: Python / YOLOv5 / Google Colab
 
-> **Note**: Framework code (UI scaffolding, image I/O) has been removed due to licensing.
-> Only core algorithm implementations (`algorithms.cpp`, `mainframe.cpp`) are included — projects are **not directly buildable**.
+## Repository Structure
+
+```
+computer-vision/
+├── 1-color-space/                   # RGB / HSI / NRG 색 공간 변환
+├── 2-contrast-transform/            # 명암 대비 향상
+├── 3-morphology-labeling/           # 모폴로지 연산 & 연결 요소 라벨링
+├── 4-opening-closing/               # Opening & Closing
+├── 5-histogram-equalization/        # 히스토그램 평활화 & 매칭
+├── 6-hough-transform/               # Hough Transform 원 검출
+└── 7-yolov5-potato-detection/       # YOLOv5 감자 이상 탐지 (Term Project)
+```
